@@ -1,11 +1,15 @@
 import os
 from Log_tools import log_decorator
+from Param_log_tools import param_decor
+
 
 data_dish, data_person = ['Омлет', 'Омлет', 'Омлет', 'Запеченный картофель', 'Фахитос'], 1
-file_path = os.path.join(os.getcwd(), 'recipies.txt')
+recepies_file = os.path.join(os.getcwd(), 'recipies.txt')
+log_path = os.path.join(os.getcwd(), 'logs')
 
 
-@log_decorator
+@param_decor(parameter = log_path)
+# @log_decorator
 def get_shop_list_by_dishes(dishes, person_count, file_path):
     with open(file_path, encoding = 'utf-8') as file:
         shop_list = {}
@@ -36,4 +40,20 @@ def get_shop_list_by_dishes(dishes, person_count, file_path):
         return shop_list
 
 
-get_shop_list_by_dishes(data_dish, data_person, file_path)
+print(get_shop_list_by_dishes(data_dish, data_person, recepies_file))
+
+# Проверка на вшивость
+# @log_decorator
+# def summator(x, y):
+#     return x + y
+#
+# three = summator(1, 2)
+#
+# five = summator(2, 3)
+#
+# result = summator(three, five)
+#
+# print('result: ', result)
+# print('result type: ', type(result))
+
+
